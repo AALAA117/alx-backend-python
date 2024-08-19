@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-""" Coroutine with async """
-
-from typing import Generator
-import asyncio
+""" The basics of async  """
 import random
+import asyncio
 
 
-async def async_generator() -> Generator[float, None, None]:
-    """ Loops 10 times asyncronously, yields random num """
-
-    for i in range(10):
-        yield random.random()
-        await asyncio.sleep(1)
+async def wait_random(max_delay: int = 10) -> float:
+    """ asynchronous coroutine that takes in an integer argument
+        (max_delay, with a default value of 10) named wait_random that waits
+        for a random delay between 0 and max_delay (included and float value)
+        seconds and eventually returns it.  """
+    random_float = random.uniform(0, max_delay)
+    await asyncio.sleep(random_float)
+    return random_float
